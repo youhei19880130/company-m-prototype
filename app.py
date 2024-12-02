@@ -106,28 +106,31 @@ def main():
     st.set_page_config(page_title="ChatBot", page_icon="🤗")
     # サイドバーを表示
     st.sidebar.title("基盤モデル設定")
+    st.session_state["bedrock_model"] = CFG.model_id
+    st.session_state["knowledge_base_id"] = CFG.knowledge_base_id
+    st.session_state["rag_on"] = True
     
     # 左サイドバー
-    with st.sidebar:
-        # bedrock_model = st.selectbox("Bedrockのモデルを選択してください", (BEDROCK_MODEL_LIST))
-        st.session_state["bedrock_model"] = CFG.model_id
+    # with st.sidebar:
+    #     # bedrock_model = st.selectbox("Bedrockのモデルを選択してください", (BEDROCK_MODEL_LIST))
+    #     st.session_state["bedrock_model"] = CFG.model_id
     
-        with st.expander(label="RAG", expanded=False):
-            rag_on = st.toggle("Knowledge base")
-            if rag_on:
-                # st.session_state["knowledge_base_id"] = st.text_input(label="Knowledge base ID", type="default")
-                st.session_state["knowledge_base_id"] = CFG.knowledge_base_id
-            st.session_state["rag_on"] = rag_on
+    #     with st.expander(label="RAG", expanded=False):
+    #         rag_on = st.toggle("Knowledge base")
+    #         if rag_on:
+    #             # st.session_state["knowledge_base_id"] = st.text_input(label="Knowledge base ID", type="default")
+    #             st.session_state["knowledge_base_id"] = CFG.knowledge_base_id
+    #         st.session_state["rag_on"] = rag_on
     
-        with st.expander(label="Configurations", expanded=True):
-            max_tokens_to_sample = st.slider(label="Maximum length", min_value=0, max_value=2048, value=300)
-            st.session_state["max_tokens_to_sample"] = max_tokens_to_sample
+    #     with st.expander(label="Configurations", expanded=True):
+    #         max_tokens_to_sample = st.slider(label="Maximum length", min_value=0, max_value=2048, value=300)
+    #         st.session_state["max_tokens_to_sample"] = max_tokens_to_sample
     
-            temperature = st.slider(label="Temperature", min_value=0.0, max_value=1.0, value=0.1, step=0.1)
-            st.session_state["temperature"] = temperature
+    #         temperature = st.slider(label="Temperature", min_value=0.0, max_value=1.0, value=0.1, step=0.1)
+    #         st.session_state["temperature"] = temperature
     
-            top_p = st.slider(label="top_p", min_value=0.00, max_value=1.00, value=0.90, step=0.01)
-            st.session_state["top_p"] = top_p
+    #         top_p = st.slider(label="top_p", min_value=0.00, max_value=1.00, value=0.90, step=0.01)
+    #         st.session_state["top_p"] = top_p
 
     st.title("Bedrock Converse API Chatbot")
     
