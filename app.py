@@ -59,7 +59,7 @@ def display_msg_content(message):
 def _invoke_model_with_response_stream_claude(input, message_placeholder, full_response):
     # Bedrockからのストリーミング応答を処理
 
-    bedrock = boto3.client(service_name="bedrock-runtime", region_name=CFG.region, config=config)
+    bedrock = boto3.client('iam', aws_access_key_id=st.secrets["AWS_SECRET"], aws_secret_access_key=st.secrets["AWS_ACCESS"], service_name="bedrock-runtime", region_name=CFG.region, config=config)
     messages = [m["role"] + ":" + m["content"] for m in st.session_state.messages]
 
     body = json.dumps(
