@@ -87,7 +87,7 @@ def _invoke_model_with_response_stream_claude(input, message_placeholder, full_r
 def _retrieve_and_generate(input, message_placeholder):
     # BedrockからのRAG応答を処理
 
-    bedrock_agent_runtime = boto3.client("bedrock-agent-runtime", region_name=CFG.region, config=config)
+    bedrock_agent_runtime = boto3.client("bedrock-agent-runtime", aws_access_key_id=st.secrets["AWS_SECRET"], aws_secret_access_key=st.secrets["AWS_ACCESS"], region_name=CFG.region, config=config)
     full_response = bedrock_agent_runtime.retrieve_and_generate(
         input={"text": input},
         retrieveAndGenerateConfiguration={
