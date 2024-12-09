@@ -11,7 +11,7 @@ import logging
 # 再試行ポリシーを設定
 config = Config(
     retries={
-        'max_attempts': 4,  # 最大リトライ回数
+        'max_attempts': 10,  # 最大リトライ回数
         'mode': 'standard'   # リトライモード (standard または adaptive)
     }
 )
