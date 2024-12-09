@@ -104,8 +104,8 @@ def _retrieve_and_generate(input, message_placeholder):
 
 def main():
     st.set_page_config(page_title="ChatBot", page_icon="🤗")
-    # サイドバーを表示
-    st.sidebar.title("基盤モデル設定")
+    # # サイドバーを表示
+    # st.sidebar.title("基盤モデル設定")
     st.session_state["bedrock_model"] = CFG.model_id
     st.session_state["knowledge_base_id"] = CFG.knowledge_base_id
     st.session_state["rag_on"] = True
