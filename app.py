@@ -59,7 +59,7 @@ def display_msg_content(message):
 def _invoke_model_with_response_stream_claude(input, message_placeholder, full_response):
     # Bedrockからのストリーミング応答を処理
 
-    bedrock = boto3.client('iam', aws_access_key_id=st.secrets["AWS_SECRET"], aws_secret_access_key=st.secrets["AWS_ACCESS"], service_name="bedrock-runtime", region_name=CFG.region, config=config)
+    bedrock = boto3.client('iam', aws_access_key_id=st.secrets["AWS_ACCESS"], aws_secret_access_key=st.secrets["AWS_SECRET"], service_name="bedrock-runtime", region_name=CFG.region, config=config)
     messages = [m["role"] + ":" + m["content"] for m in st.session_state.messages]
 
     body = json.dumps(
@@ -87,7 +87,7 @@ def _invoke_model_with_response_stream_claude(input, message_placeholder, full_r
 def _retrieve_and_generate(input, message_placeholder):
     # BedrockからのRAG応答を処理
 
-    bedrock_agent_runtime = boto3.client("bedrock-agent-runtime", region_name=CFG.region, config=config)
+    bedrock_agent_runtime = boto3.client("bedrock-agent-runtime", aws_access_key_id=st.secrets["AWS_ACCESS"], aws_secret_access_key=st.secrets["AWS_SECRET"], region_name=CFG.region, config=config)
     full_response = bedrock_agent_runtime.retrieve_and_generate(
         input={"text": input},
         retrieveAndGenerateConfiguration={
